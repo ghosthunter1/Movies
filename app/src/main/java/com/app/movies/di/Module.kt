@@ -20,7 +20,7 @@ val appModule: Module = module {
         RetrofitBuilder(get())
     }
 
-    single {
+    factory {
         MoviesRepository(get())
     }
 

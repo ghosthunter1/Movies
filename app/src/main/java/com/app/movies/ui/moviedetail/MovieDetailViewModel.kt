@@ -19,7 +19,7 @@ class MovieDetailViewModel(private val moviesRepository: MoviesRepository) : Vie
                 val response = moviesRepository.fetchSimilarMovies(movieId,page)
                 moviesLiveData.postValue(Resource(Resource.Status.SUCCESS, response))
             } catch (e: Exception) {
-                moviesLiveData.postValue(Resource(Resource.Status.ERROR, null))
+                moviesLiveData.postValue(Resource(Resource.Status.ERROR, null,e.message))
             }
 
         }

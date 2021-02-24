@@ -1,10 +1,15 @@
 package com.app.movies.base
 
+import android.R
+import android.content.Context
 import android.os.Bundle
 import android.transition.Fade
 import android.view.Window
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+
 
 open class BaseActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,4 +27,6 @@ open class BaseActivity : AppCompatActivity(){
         window.enterTransition = fade;
         window.exitTransition = fade;
     }
+
+
 }

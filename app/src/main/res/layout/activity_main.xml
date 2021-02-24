@@ -6,12 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".ui.movies.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/input"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:background="@drawable/search_input_bg"
+            android:paddingLeft="40dp"
+            android:paddingRight="10dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/search_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="16dp"
+            app:srcCompat="@drawable/ic_search_icon" />
+    </FrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/movies_recyclerview"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:paddingStart="10dp"
+        android:paddingTop="20dp"
         android:paddingEnd="16dp"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
