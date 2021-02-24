@@ -1,5 +1,6 @@
 package com.app.movies.ui.movies
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.app.movies.networking.MoviesApi
@@ -25,7 +26,7 @@ class MoviesViewModel(private val moviesRepository: MoviesRepository) : ViewMode
                 val response = moviesRepository.getPopularMovies(page)
                 moviesLiveData.postValue(Resource(Resource.Status.SUCCESS, response))
             } catch (e: Exception) {
-                moviesLiveData.postValue(Resource(Resource.Status.ERROR, null))
+                moviesLiveData.postValue(Resource(Resource.Status.ERROR, null,e.message?:"" ))
             }
 
         }

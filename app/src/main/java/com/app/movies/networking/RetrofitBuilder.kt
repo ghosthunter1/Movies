@@ -1,15 +1,14 @@
 package com.app.movies.networking
 
+import com.app.movies.utils.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitBuilder(private  val defaultParameterInterceptor: DefaultParameterInterceptor) {
-    private val BASE_URL = "https://api.themoviedb.org/3/tv/"
+
     private var retrofitInctance: Retrofit? = null
-
-
     private fun getRetrofitInctance(): Retrofit {
         val hhtpLoggingInterceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY

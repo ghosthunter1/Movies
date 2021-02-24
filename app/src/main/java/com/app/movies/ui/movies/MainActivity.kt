@@ -75,7 +75,7 @@ class MainActivity : BaseActivity() {
 
     private fun setListeners() {
 
-        input.addTextChangedListener(object : TextWatcher{
+        input.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 
             }
@@ -85,7 +85,7 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                publisherSubject.onNext(p0 ?:"")
+                publisherSubject.onNext(p0 ?: "")
             }
         })
 
@@ -97,12 +97,10 @@ class MainActivity : BaseActivity() {
                     totalItemCount = linearLayoutManager.getItemCount();
                     pastVisiblesItems = linearLayoutManager.findFirstVisibleItemPosition();
 
-                    if (!loading) {
-                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
-                            loading = true;
-                            currentPage++
-                            viewModel.fetchPopularMovies(currentPage)
-                        }
+                    if (!loading && (visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                        loading = true;
+                        currentPage++
+                        viewModel.fetchPopularMovies(currentPage)
                     }
                 }
             }
@@ -116,7 +114,7 @@ class MainActivity : BaseActivity() {
         publisherSubject
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .debounce(1,TimeUnit.SECONDS)
+            .debounce(1, TimeUnit.SECONDS)
             .map {
                 return@map it.toString()
             }.subscribe {
@@ -125,15 +123,15 @@ class MainActivity : BaseActivity() {
 
     }
 
-    fun showSearchWithAnimation(){
-        val moveSearchIconX = ObjectAnimator.ofFloat(search_icon,View.X,input.x + 10.dpToPx)
-        val scaleInputX = ObjectAnimator.ofFloat(input,View.SCALE_X,0f,1f)
-        val scaleInputY = ObjectAnimator.ofFloat(input,View.SCALE_Y,0f,1f)
-        val inputAlpha = ObjectAnimator.ofFloat(input,View.ALPHA,1f)
+    fun showSearchWithAnimation() {
+        val moveSearchIconX = ObjectAnimator.ofFloat(search_icon, View.X, input.x + 10.dpToPx)
+        val scaleInputX = ObjectAnimator.ofFloat(input, View.SCALE_X, 0f, 1f)
+        val scaleInputY = ObjectAnimator.ofFloat(input, View.SCALE_Y, 0f, 1f)
+        val inputAlpha = ObjectAnimator.ofFloat(input, View.ALPHA, 1f)
 
         val animatorSet = AnimatorSet().apply {
             duration = 500
-            addListener(object : Animator.AnimatorListener{
+            addListener(object : Animator.AnimatorListener {
                 override fun onAnimationRepeat(p0: Animator?) {
 
                 }
@@ -147,17 +145,17 @@ class MainActivity : BaseActivity() {
                 }
 
                 override fun onAnimationStart(p0: Animator?) {
-                   input.visibility = View.VISIBLE
+                    input.visibility = View.VISIBLE
                 }
             })
-            playTogether(moveSearchIconX,scaleInputX,scaleInputY,inputAlpha)
+            playTogether(moveSearchIconX, scaleInputX, scaleInputY, inputAlpha)
         }
         animatorSet.start()
 
 
     }
 
-    fun openKeyboard(){
+    fun openKeyboard() {
         input.requestFocus()
         val imm: InputMethodManager =
             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

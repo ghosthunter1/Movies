@@ -84,13 +84,11 @@ class MovieDetailActivity : BaseActivity() {
                     totalItemCount = linearLayoutManager.getItemCount();
                     pastVisiblesItems = linearLayoutManager.findFirstVisibleItemPosition();
 
-                    if (!loading) {
-                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                        if (!loading && (visibleItemCount + pastVisiblesItems) >= totalItemCount) {
                             loading = true;
                             currentPage++
                             viewModel.fetchSimilarMovies(currentPage, movie.id!!.toInt())
                         }
-                    }
                 }
             }
         })
